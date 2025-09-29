@@ -1,0 +1,152 @@
+/* تنظیمات رنگ‌ها و فونت جدید */
+:root {
+    --color-background-dark: #121212; /* پس زمینه اصلی */
+    --color-surface-dark: #1e1e1e;   /* پس زمینه کارت‌ها و کانتینر */
+    --color-text-light: #e0e0e0;     /* متن اصلی روشن */
+    --color-text-secondary: #9e9e9e; /* متن ثانویه */
+    --color-accent-blue: #007acc;    /* آبی برجسته (برای دکمه‌ها/عناوین) */
+    --color-correct-bg: #1c452e;     /* پس زمینه پاسخ صحیح در دارک مود */
+    --color-correct-text: #66bb6a;   /* متن پاسخ صحیح در دارک مود */
+    --color-border: #333333;         /* رنگ خطوط جداکننده */
+    --font-primary: 'Vazirmatn', Tahoma, sans-serif;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-background-dark);
+    color: var(--color-text-light);
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    direction: rtl; 
+    text-align: right;
+    transition: background-color 0.5s;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    background: var(--color-surface-dark);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* سایه عمیق‌تر برای دارک مود */
+    border-radius: 12px;
+}
+
+h1 {
+    text-align: center;
+    color: var(--color-accent-blue);
+    margin-bottom: 30px;
+    font-size: 2.2em;
+    font-weight: 700;
+}
+
+/* استایل کادر جستجو */
+#search-input {
+    width: 100%;
+    padding: 18px;
+    margin-bottom: 25px;
+    border: 2px solid var(--color-border);
+    border-radius: 30px;
+    box-sizing: border-box;
+    font-size: 1.1em;
+    text-align: right;
+    background-color: #2b2b2b; /* کمی روشن‌تر از پس زمینه برای تمایز */
+    color: var(--color-text-light);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#search-input::placeholder {
+    color: var(--color-text-secondary);
+}
+
+#search-input:focus {
+    border-color: var(--color-accent-blue);
+    box-shadow: 0 0 10px rgba(0, 122, 204, 0.7); /* افکت نئونی ملایم */
+    outline: none;
+}
+
+/* استایل کارت‌های نتیجه */
+.question-card {
+    background-color: var(--color-surface-dark);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.question-card:hover {
+    transform: translateY(-5px); /* افکت برجسته‌تر */
+    background-color: #242424; /* کمی روشن‌تر شدن در هاور */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+.question-card h2 {
+    margin-top: 0;
+    color: var(--color-accent-blue);
+    font-size: 1.35em;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+/* استایل گزینه‌ها */
+.options p {
+    margin: 8px 0;
+    padding: 8px 15px;
+    border-radius: 6px;
+    background-color: #2b2b2b; /* پس زمینه برای هر گزینه */
+    border: 1px solid #2b2b2b;
+    transition: background-color 0.2s;
+}
+
+/* پاسخ صحیح با رنگ سبز تیره و متن روشن */
+.options p.correct {
+    background-color: var(--color-correct-bg); 
+    color: var(--color-correct-text);
+    font-weight: bold;
+    border: 1px solid var(--color-correct-text);
+    box-shadow: 0 0 8px rgba(102, 187, 106, 0.4); 
+}
+
+/* استایل پاسخ صحیح (جعبه پایین) */
+.answer {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--color-accent-blue);
+    color: var(--color-background-dark); /* متن تیره روی آبی روشن */
+    border-radius: 8px;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 122, 204, 0.5);
+    font-size: 1.1em;
+}
+
+#results-count {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 400;
+    color: var(--color-text-secondary);
+    font-size: 1em;
+}
+
+/* Media Queries برای موبایل */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        padding: 15px;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    .question-card h2 {
+        font-size: 1.2em;
+    }
+    .answer {
+        font-size: 1em;
+        padding: 10px;
+    }
+}
