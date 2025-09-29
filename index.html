@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سینمابلاگ | نقد و بررسی فیلم</title>
+    <style>
+        /* استایل کلی */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #e50914;
+            --dark-bg: #0f0f0f;
+            --dark-card: #1a1a1a;
+            --dark-text: #e0e0e0;
+            --dark-border: #333;
+            --accent: #ffcc00;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* هدر */
+        header {
+            background: linear-gradient(to bottom, rgba(15,15,15,0.9), rgba(15,15,15,0.7));
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--dark-border);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+            background-color: rgba(229, 9, 20, 0.1);
+        }
+        
+        /* بخش هیرو */
+        .hero {
+            height: 70vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://source.unsplash.com/random/1200x800/?cinema') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #ddd;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #ff2d39;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(229, 9, 20, 0.4);
+        }
+        
+        /* بخش مطالب */
+        .posts-section {
+            padding: 40px 0;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+        }
+        
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .post-card {
+            background-color: var(--dark-card);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--dark-border);
+        }
+        
+        .post-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        
+        .post-image {
+            height: 200px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .post-content {
+            padding: 20px;
+        }
+        
+        .post-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .post-excerpt {
+            color: #aaa;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #777;
+            border-top: 1px solid var(--dark-border);
+            padding-top: 15px;
+        }
+        
+        /* فوتر */
+        footer {
+            background-color: #080808;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+            border-top: 1px solid var(--dark-border);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section p {
+            color: #999;
+            line-height: 1.8;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--dark-border);
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        /* دکمه بازگشت به بالا */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background-color: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 99;
+            font-size: 20px;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        
+        .back-to-top:hover {
+            transform: scale(1.1);
+        }
+        
+        /* رسپانسیو */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- هدر -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">سینما<span>بلاگ</span></div>
+                <nav>
+                    <ul>
+                        <li><a href="#">خانه</a></li>
+                        <li><a href="#">فیلم‌ها</a></li>
+                        <li><a href="#">نقدها</a></li>
+                        <li><a href="#">مقالات</a></li>
+                        <li><a href="#">درباره ما</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- بخش هیرو -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>به دنیای سینما خوش آمدید</h1>
+            <p>اینجا جایی است که بهترین نقدها و تحلیل‌های سینمایی را پیدا می‌کنید. از جدیدترین فیلم‌ها تا کلاسیک‌های همیشه سبز.</p>
+            <a href="#" class="btn">مشاهده آخرین مطالب</a>
+        </div>
+    </section>
+
+    <!-- بخش مطالب -->
+    <section class="posts-section">
+        <div class="container">
+            <h2 class="section-title">آخرین نقدها</h2>
+            <div class="posts-grid">
+                <!-- پست 1 -->
+                <div class="post-card">
+                    <div class="post-image" style="background-image: url('https://source.unsplash.com/random/600x400/?movie,drama')"></div>
+                    <div class="post-content">
+                        <h3 class="post-title">نقد فیلم Oppenheimer: نبوغ و ویرانی</h3>
+                        <p class="post-excerpt">کریستوفر نولان یک بار دیگر اثبات کرده که استاد روایت داستان‌های پیچیده تاریخی است. فیلمی که بیننده را با اخلاقیات علم هسته‌ای درگیر می‌کند.</p>
+                        <a href="#" class="btn" style="padding: 8px 20px; font-size: 0.9rem;">ادامه مطلب</a>
+                    </div>
+                    <div class="post-meta">
+                        <span>نویسنده: علی محمدی</span>
+                        <span>۱۴۰۲/۰۵/۱۰</span>
+                    </div>
+                </div>
+                
+                <!-- پست 2 -->
+                <div class="post-card">
+                    <div class="post-image" style="background-image: url('https://source.unsplash.com/random/600x400/?movie,action')"></div>
+                    <div class="post-content">
+                        <h3 class="post-title">بررسی Dune: Part Two - حماسه‌ای فراتر از انتظار</h3>
+                        <p class="post-excerpt">دن ویلنوو در قسمت دوم هم موفق شده جهان فرانک هربرت را با شکوه هرچه تمام‌تر به تصویر بکشد. بازی تیموتی شالامی و زندایا بی‌نظیر است.</p>
+                        <a href="#" class="btn" style="padding: 8px 20px; font-size: 0.9rem;">ادامه مطلب</a>
+                    </div>
+                    <div class="post-meta">
+                        <span>نویسنده: سارا احمدی</span>
+                        <span>۱۴۰۲/۰۵/۰۸</span>
+                    </div>
+                </div>
+                
+                <!-- پست 3 -->
+                <div class="post-card">
+                    <div class="post-image" style="background-image: url('https://source.unsplash.com/random/600x400/?movie,comedy')"></div>
+                    <div class="post-content">
+                        <h3 class="post-title">کمدی‌های دهه ۹۰: طلایی‌ترین دوران سینما</h3>
+                        <p class="post-excerpt">نگاهی به بهترین کمدی‌های دهه ۹۰ میلادی که هنوز هم بعد از گذشت سه دهه، تماشای آن‌ها لذت‌بخش است.</p>
+                        <a href="#" class="btn" style="padding: 8px 20px; font-size: 0.9rem;">ادامه مطلب</a>
+                    </div>
+                    <div class="post-meta">
+                        <span>نویسنده: رضا کریمی</span>
+                        <span>۱۴۰۲/۰۵/۰۵</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>درباره سینمابلاگ</h3>
+                    <p>سینمابلاگ یک وبلاگ تخصصی در زمینه نقد و بررسی فیلم است که توسط گروهی از علاقه‌مندان به سینما اداره می‌شود. هدف ما ارائه تحلیل‌های عمیق و بی‌طرفانه از آثار سینمایی است.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>دسترسی سریع</h3>
+                    <ul style="list-style: none; color: #999;">
+                        <li><a href="#" style="color: #999; text-decoration: none;">صفحه اصلی</a></li>
+                        <li><a href="#" style="color: #999; text-decoration: none;">تماس با ما</a></li>
+                        <li><a href="#" style="color: #999; text-decoration: none;">حریم خصوصی</a></li>
+                        <li><a href="#" style="color: #999; text-decoration: none;">قوانین و مقررات</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>عضویت در خبرنامه</h3>
+                    <p>برای دریافت آخرین نقدها و اخبار سینمایی در خبرنامه ما عضو شوید.</p>
+                    <input type="email" placeholder="ایمیل خود را وارد کنید" style="padding: 10px; width: 100%; margin-top: 10px; background: #222; border: 1px solid #333; color: white; border-radius: 4px;">
+                    <button class="btn" style="margin-top: 10px; width: 100%;">عضویت</button>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>تمامی حقوق محفوظ است © ۱۴۰۲ سینمابلاگ</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- دکمه بازگشت به بالا -->
+    <div class="back-to-top">↑</div>
+
+    <script>
+        // اسکریپت برای دکمه بازگشت به بالا
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // اسکریپت برای انیمیشن کارت‌ها هنگام اسکرول
+        const observerOptions = {
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // اعمال انیمیشن روی کارت‌ها
+        document.querySelectorAll('.post-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s, transform 0.5s';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
